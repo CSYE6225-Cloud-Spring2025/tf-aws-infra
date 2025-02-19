@@ -4,3 +4,4 @@
 3. Run `terraform plan -var-file=<env>.tfvars` to view the plan
 4. Run `terraform apply -var-file=<env>.tfvars` to create the resources
 5. Run `terraform destroy -var-file=<env>.tfvars` to tear down all resources
+6. Edited to test PR check
