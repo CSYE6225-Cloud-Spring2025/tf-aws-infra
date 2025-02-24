@@ -10,7 +10,7 @@ resource "aws_subnet" "public_subnet" {
 
 resource "aws_subnet" "private_subnet" {
   count             = 3
-  vpc_id            = aws_vpc.test_vpc.id
+  vpc_id            = aws_vpc.test_vpc.bad
   cidr_block        = var.private_cidr_range[count.index]
   availability_zone = var.availability_zones[count.index]
   tags = {
