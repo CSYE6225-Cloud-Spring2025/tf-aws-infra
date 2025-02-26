@@ -5,7 +5,7 @@ resource "aws_route_table" "public_route_table" {
     gateway_id = aws_internet_gateway.internet_gateway.id
   }
   tags = {
-    name = "${var.vpc_name}-public-route-table"
+    Name = "${var.vpc_name}-public-route-table"
   }
 }
 
