@@ -32,3 +32,18 @@ variable "private_cidr_range" {
   description = "Private cidr range"
   type        = list(string)
 }
+
+variable "webapp_port" {
+  description = "Webapp application port"
+  type        = string
+}
+
+variable "ami_id" {
+  description = "ID of the created AMI"
+  type        = string
+}
+
+variable "ec2_instance_type" {
+  description = "EC2 instance type"
+  type        = string
+}
