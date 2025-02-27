@@ -8,4 +8,4 @@
 ## Assignment 4
 1. For `AWS` copy the <ami_id> of the created AMI and add it in <env>.tfvars file
 2. Run terraform init, plan and apply commands as above to create the vpc and the ec2 instance
-3. Get the public ipv4 address from AWS console and adjust the endpoint to send requests
+3. Get the public ipv4 address from AWS console to send requests
