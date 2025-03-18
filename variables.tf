@@ -47,3 +47,13 @@ variable "ec2_instance_type" {
   description = "EC2 instance type"
   type        = string
 }
+
+variable "ec2_key_name" {
+  description = "AWS EC2 key name"
+  type        = string
+}
+
+variable "ec2_key_file" {
+  description = "AWS EC2 key file"
+  type        = string
+}
