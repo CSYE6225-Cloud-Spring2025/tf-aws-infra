@@ -57,3 +57,23 @@ variable "ec2_key_file" {
   description = "AWS EC2 key file"
   type        = string
 }
+
+variable "rds_instance_class" {
+  description = "RDS instance class"
+  type        = string
+}
+
+variable "rds_db_name" {
+  description = "RDS name"
+  type        = string
+}
+
+variable "rds_username" {
+  description = "Username to access RDS"
+  type        = string
+}
+
+variable "rds_password" {
+  description = "Password to access RDS"
+  type        = string
+}
