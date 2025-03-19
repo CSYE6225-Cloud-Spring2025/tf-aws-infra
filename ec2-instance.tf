@@ -9,7 +9,25 @@ resource "aws_instance" "web_application" {
   associate_public_ip_address = true
   subnet_id                   = aws_subnet.public_subnet[1].id
   vpc_security_group_ids      = [aws_security_group.webapp_security_group.id]
-  key_name                    = aws_key_pair.aws_ec2_key.key_name
+
+  key_name             = aws_key_pair.aws_ec2_key.key_name
+  iam_instance_profile = aws_iam_instance_profile.ec2_rds_profile.name
+  user_data            = <<-EOF
+    #!/bin/bash
+    
+    sudo touch /opt/csye6225/webapp/.env
+    sudo chmod 666 /opt/csye6225/webapp/.env
+    {
+      echo "DB_HOST=${aws_db_instance.rds_mysql.address}"
+      echo "DB_USER=${var.rds_username}"
+      echo "DB_PASSWORD=${var.rds_password}"
+      echo "DB_NAME=${var.rds_db_name}"
+      echo "PORT=${var.webapp_port}"
+    } > "/opt/csye6225/webapp/.env"
+
+    sudo systemctl daemon-reexec
+    sudo systemctl restart webapp
+  EOF
 
   disable_api_termination = false
   root_block_device {
