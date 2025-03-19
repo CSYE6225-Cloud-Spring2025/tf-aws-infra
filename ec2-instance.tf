@@ -18,7 +18,7 @@ resource "aws_instance" "web_application" {
     sudo touch /opt/csye6225/webapp/.env
     sudo chmod 666 /opt/csye6225/webapp/.env
     {
-      echo "DB_HOST=${aws_db_instance.rds_mysql.endpoint}"
+      echo "DB_HOST=${aws_db_instance.rds_mysql.address}"
       echo "DB_USER=${var.rds_username}"
       echo "DB_PASSWORD=${var.rds_password}"
       echo "DB_NAME=${var.rds_db_name}"
