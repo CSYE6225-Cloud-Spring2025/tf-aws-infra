@@ -10,9 +10,9 @@ resource "aws_instance" "web_application" {
   subnet_id                   = aws_subnet.public_subnet[1].id
   vpc_security_group_ids      = [aws_security_group.webapp_security_group.id]
 
-  key_name                    = aws_key_pair.aws_ec2_key.key_name
-  iam_instance_profile        = aws_iam_instance_profile.ec2_rds_profile.name
-  user_data = <<-EOF
+  key_name             = aws_key_pair.aws_ec2_key.key_name
+  iam_instance_profile = aws_iam_instance_profile.ec2_rds_profile.name
+  user_data            = <<-EOF
     #!/bin/bash
     
     sudo touch /opt/csye6225/webapp/.env
