@@ -19,10 +19,10 @@ resource "aws_instance" "web_application" {
     sudo chmod 666 /opt/csye6225/webapp/.env
     {
       echo "DB_HOST=${aws_db_instance.rds_mysql.endpoint}"
-      echo "DB_USER=csye6225"
-      echo "DB_PASSWORD=c$yE6zzS"
-      echo "DB_NAME=csye6225"
-      echo "PORT=3001"
+      echo "DB_USER=${var.rds_username}"
+      echo "DB_PASSWORD=${var.rds_password}"
+      echo "DB_NAME=${var.rds_db_name}"
+      echo "PORT=${var.webapp_port}"
     } > "/opt/csye6225/webapp/.env"
 
     sudo systemctl daemon-reexec
