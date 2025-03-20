@@ -72,8 +72,3 @@ variable "rds_username" {
   description = "Username to access RDS"
   type        = string
 }
-
-variable "rds_password" {
-  description = "Password to access RDS"
-  type        = string
-}

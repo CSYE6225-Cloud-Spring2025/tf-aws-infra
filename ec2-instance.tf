@@ -11,7 +11,7 @@ resource "aws_instance" "web_application" {
   vpc_security_group_ids      = [aws_security_group.webapp_security_group.id]
 
   key_name             = aws_key_pair.aws_ec2_key.key_name
-  iam_instance_profile = aws_iam_instance_profile.ec2_rds_profile.name
+  iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
   user_data            = <<-EOF
     #!/bin/bash
     
@@ -20,9 +20,11 @@ resource "aws_instance" "web_application" {
     {
       echo "DB_HOST=${aws_db_instance.rds_mysql.address}"
       echo "DB_USER=${var.rds_username}"
-      echo "DB_PASSWORD=${var.rds_password}"
+      echo "DB_PASSWORD=${local.rds_password}"
       echo "DB_NAME=${var.rds_db_name}"
       echo "PORT=${var.webapp_port}"
+      echo "AWS_REGION=${var.aws_region}"
+      echo "S3_BUCKET=${aws_s3_bucket.upload_bucket.bucket}"
     } > "/opt/csye6225/webapp/.env"
 
     sudo systemctl daemon-reexec

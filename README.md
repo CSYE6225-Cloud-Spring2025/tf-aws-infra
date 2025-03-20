@@ -9,3 +9,9 @@
 1. For `AWS` copy the <ami_id> of the created AMI and add it in <env>.tfvars file
 2. Run terraform init, plan and apply commands as above to create the vpc and the ec2 instance
 3. Get the public ipv4 address from AWS console to send requests
+
+## Assignment 5
+1. Run `ssh -i <aws-ec2-key> ubuntu@<ipv4-addresss>` to ssh into the ec2 instance
+2. Install MySQL client using `sudo apt-get install mysql-client`
+3. In the ec2 use `sudo su` to view the RDS credentials in `/opt/csye6225/webapp/.env`
+4. Connect to the RDS MySQL server by `mysql -h <db-host> -P 3306 -u csye6225 -p`
