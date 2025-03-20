@@ -1,5 +1,10 @@
-resource "aws_iam_role" "ec2_access_rds" {
-  name = "ec2-access-rds"
+resource "aws_iam_instance_profile" "ec2_profile" {
+  name = "ec2_profile"
+  role = aws_iam_role.ec2_access_rds_s3.name
+}
+
+resource "aws_iam_role" "ec2_access_rds_s3" {
+  name = "ec2-access-rds-s3"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [{
@@ -13,11 +18,29 @@ resource "aws_iam_role" "ec2_access_rds" {
 }
 
 resource "aws_iam_role_policy_attachment" "rds_access" {
-  role       = aws_iam_role.ec2_access_rds.name
+  role       = aws_iam_role.ec2_access_rds_s3.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonRDSFullAccess"
 }
 
-resource "aws_iam_instance_profile" "ec2_rds_profile" {
-  name = "ec2-rds-profile"
-  role = aws_iam_role.ec2_access_rds.name
+resource "aws_iam_policy" "upload_bucket_policy" {
+  name        = "s3-${random_uuid.bucket_uuid.result}-full-access"
+  description = "Allow full access to S3 bucket and its objects"
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect = "Allow",
+        Action = "s3:*",
+        Resource = [
+          "${aws_s3_bucket.upload_bucket.arn}",
+          "${aws_s3_bucket.upload_bucket.arn}/*"
+        ]
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "s3_access" {
+  role       = aws_iam_role.ec2_access_rds_s3.name
+  policy_arn = aws_iam_policy.upload_bucket_policy.arn
 }

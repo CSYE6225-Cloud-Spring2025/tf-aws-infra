@@ -4,7 +4,7 @@ resource "aws_db_instance" "rds_mysql" {
   engine_version         = "8.0"
   db_name                = var.rds_db_name
   username               = var.rds_username
-  password               = var.rds_password
+  password               = local.rds_password
   instance_class         = var.rds_instance_class
   storage_type           = "gp2"
   allocated_storage      = 10
@@ -28,4 +28,16 @@ resource "aws_db_parameter_group" "rds_parameter_group" {
     name  = "max_connections"
     value = "50"
   }
+}
+
+resource "random_password" "db_password" {
+  length  = 16
+  upper   = true
+  lower   = true
+  numeric = true
+  special = false
+}
+
+locals {
+  rds_password = random_password.db_password.result
 }
