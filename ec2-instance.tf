@@ -28,6 +28,7 @@ resource "aws_instance" "web_application" {
     } > "/opt/csye6225/webapp/.env"
 
     sudo systemctl daemon-reexec
+    sudo systemctl restart amazon-cloudwatch-agent
     sudo systemctl restart webapp
   EOF
 
