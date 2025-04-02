@@ -13,12 +13,12 @@ resource "aws_security_group" "webapp_security_group" {
 }
 
 resource "aws_security_group_rule" "webapp_ingress_rules" {
-  count             = 4
-  type              = "ingress"
-  protocol          = "tcp"
-  cidr_blocks       = ["0.0.0.0/0"]
-  from_port         = [22, 80, 443, var.webapp_port][count.index]
-  to_port           = [22, 80, 443, var.webapp_port][count.index]
-  security_group_id = aws_security_group.webapp_security_group.id
-  description       = "Incoming access to port ${[22, 80, 443, var.webapp_port][count.index]}"
+  count                    = 2
+  type                     = "ingress"
+  protocol                 = "tcp"
+  from_port                = [22, var.webapp_port][count.index]
+  to_port                  = [22, var.webapp_port][count.index]
+  security_group_id        = aws_security_group.webapp_security_group.id
+  source_security_group_id = aws_security_group.load_balancer_security_group.id
+  description              = "Incoming access to port ${[22, var.webapp_port][count.index]}"
 }

@@ -17,12 +17,6 @@ resource "aws_iam_role" "ec2_access_rds_s3" {
   })
 }
 
-# policy attachment to access RDS
-resource "aws_iam_role_policy_attachment" "rds_access" {
-  role       = aws_iam_role.ec2_access_rds_s3.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonRDSFullAccess"
-}
-
 # policy to access S3
 resource "aws_iam_policy" "upload_bucket_policy" {
   name        = "s3-${random_uuid.bucket_uuid.result}-full-access"

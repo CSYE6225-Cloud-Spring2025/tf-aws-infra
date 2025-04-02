@@ -72,3 +72,8 @@ variable "rds_username" {
   description = "Username to access RDS"
   type        = string
 }
+
+variable "route53_zone_id" {
+  description = "The hosted zone ID in Route53"
+  type        = string
+}
