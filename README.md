@@ -15,3 +15,7 @@
 2. Install MySQL client using `sudo apt-get install mysql-client`
 3. In the ec2 use `sudo su` to view the RDS credentials in `/opt/csye6225/webapp/.env`
 4. Connect to the RDS MySQL server by `mysql -h <db-host> -P 3306 -u csye6225 -p`
+
+## Assignment 7
+1. Create a hosted zone in the subaccount for the subdomain
+2. Copy the Zone ID of the Route 53 hosted zone and add it to `route53_zone_id` in `<env>.tfvars`
