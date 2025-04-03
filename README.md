@@ -19,3 +19,4 @@
 ## Assignment 7
 1. Create a hosted zone in the subaccount for the subdomain
 2. Copy the Zone ID of the Route 53 hosted zone and add it to `route53_zone_id` in `<env>.tfvars`
+3. Use Apache Benchmark to send bulk requests `ab -n 10000 -c 100 http://<domain.tld>/healthz`

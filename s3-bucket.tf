@@ -1,7 +1,7 @@
 resource "random_uuid" "bucket_uuid" {}
 
 resource "aws_s3_bucket" "upload_bucket" {
-  bucket        = "upload-bucket-${formatdate("YYYYMMDD-hhmmss", timestamp())}"
+  bucket        = "upload-bucket-${formatdate("YYYYMMDD", timestamp())}"
   force_destroy = true
 }
 

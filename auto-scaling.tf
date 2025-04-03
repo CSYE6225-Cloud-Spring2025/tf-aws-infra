@@ -1,11 +1,11 @@
 resource "aws_cloudwatch_metric_alarm" "webapp_low_cpu" {
   alarm_name          = "webapp-low-cpu-usage"
-  alarm_description   = "Scale down instances when CPU utilization < 1%"
+  alarm_description   = "Scale down instances when CPU utilization < 7%"
   metric_name         = "CPUUtilization"
   comparison_operator = "LessThanThreshold"
-  threshold           = 3
+  threshold           = 7
   period              = 60
-  evaluation_periods  = 2
+  evaluation_periods  = 1
   statistic           = "Average"
   namespace           = "AWS/EC2"
   dimensions = {
@@ -24,12 +24,12 @@ resource "aws_autoscaling_policy" "webapp_scale_down" {
 
 resource "aws_cloudwatch_metric_alarm" "webapp_high_cpu" {
   alarm_name          = "webapp-high-cpu-usage"
-  alarm_description   = "Scale down instances when CPU utilization > 1%"
+  alarm_description   = "Scale up instances when CPU utilization > 10%"
   metric_name         = "CPUUtilization"
   comparison_operator = "GreaterThanThreshold"
-  threshold           = 5
+  threshold           = 10
   period              = 60
-  evaluation_periods  = 2
+  evaluation_periods  = 1
   statistic           = "Average"
   namespace           = "AWS/EC2"
   dimensions = {

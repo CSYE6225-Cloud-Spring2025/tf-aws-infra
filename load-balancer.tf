@@ -35,7 +35,7 @@ resource "aws_lb_target_group" "webapp_target_group" {
   port     = var.webapp_port
   vpc_id   = aws_vpc.test_vpc.id
   health_check {
-    interval            = 30
+    interval            = 60
     path                = "/healthz"
     matcher             = "200"
     timeout             = 5
