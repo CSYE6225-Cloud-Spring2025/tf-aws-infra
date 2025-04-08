@@ -10,7 +10,7 @@ resource "aws_lb" "webapp_load_balancer" {
 
 resource "aws_route53_record" "www" {
   zone_id = var.route53_zone_id
-  name    = "demo.sarthakmallick.me"
+  name    = var.domain_name
   type    = "A"
   alias {
     name                   = aws_lb.webapp_load_balancer.dns_name

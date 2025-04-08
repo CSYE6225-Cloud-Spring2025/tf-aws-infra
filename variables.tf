@@ -73,7 +73,22 @@ variable "rds_username" {
   type        = string
 }
 
+variable "linux_group" {
+  description = "Linux group name to run app"
+  type        = string
+}
+
+variable "linux_user" {
+  description = "Linux user name to run app"
+  type        = string
+}
+
 variable "route53_zone_id" {
   description = "The hosted zone ID in Route53"
+  type        = string
+}
+
+variable "domain_name" {
+  description = "Domain name configured in hosted zone"
   type        = string
 }
