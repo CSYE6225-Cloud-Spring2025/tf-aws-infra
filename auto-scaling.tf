@@ -3,7 +3,7 @@ resource "aws_cloudwatch_metric_alarm" "webapp_low_cpu" {
   alarm_description   = "Scale down instances when CPU utilization < 7%"
   metric_name         = "CPUUtilization"
   comparison_operator = "LessThanThreshold"
-  threshold           = 7
+  threshold           = 15
   period              = 60
   evaluation_periods  = 1
   statistic           = "Average"
@@ -27,7 +27,7 @@ resource "aws_cloudwatch_metric_alarm" "webapp_high_cpu" {
   alarm_description   = "Scale up instances when CPU utilization > 10%"
   metric_name         = "CPUUtilization"
   comparison_operator = "GreaterThanThreshold"
-  threshold           = 10
+  threshold           = 20
   period              = 60
   evaluation_periods  = 1
   statistic           = "Average"
