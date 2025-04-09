@@ -48,16 +48,6 @@ variable "ec2_instance_type" {
   type        = string
 }
 
-variable "ec2_key_name" {
-  description = "AWS EC2 key name"
-  type        = string
-}
-
-variable "ec2_key_file" {
-  description = "AWS EC2 key file"
-  type        = string
-}
-
 variable "rds_instance_class" {
   description = "RDS instance class"
   type        = string
@@ -90,5 +80,15 @@ variable "route53_zone_id" {
 
 variable "domain_name" {
   description = "Domain name configured in hosted zone"
+  type        = string
+}
+
+variable "ec2_template_name" {
+  description = "EC2 template name"
+  type        = string
+}
+
+variable "autoscaling_group_name" {
+  description = "Auto-scaling group name"
   type        = string
 }

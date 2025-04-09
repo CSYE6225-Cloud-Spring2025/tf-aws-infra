@@ -1,5 +1,5 @@
 resource "aws_autoscaling_group" "webapp_autoscaling_group" {
-  name = "webapp-autoscaling-group"
+  name = var.autoscaling_group_name
   launch_template {
     id      = aws_launch_template.webapp_template.id
     version = "$Latest"
