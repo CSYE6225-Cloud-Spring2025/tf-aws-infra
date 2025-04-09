@@ -3,7 +3,7 @@ resource "aws_launch_template" "webapp_template" {
   image_id      = var.ami_id
   instance_type = var.ec2_instance_type
   network_interfaces {
-    associate_public_ip_address = false
+    associate_public_ip_address = true
     security_groups             = [aws_security_group.webapp_security_group.id]
   }
   iam_instance_profile {
