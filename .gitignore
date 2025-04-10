@@ -36,6 +36,12 @@ override.tf.json
 .terraformrc
 terraform.rc
 
-# Ignore AWS keys
+# AWS keys
 *key
 *key.pub
+
+# SSL certificates
+*.ca-bundle
+*.crt
+*.csr
+*.cnf

@@ -13,12 +13,11 @@ resource "aws_security_group" "load_balancer_security_group" {
 }
 
 resource "aws_security_group_rule" "load_balancer_ingress_rules" {
-  count             = 2
   type              = "ingress"
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
-  from_port         = [80, 443][count.index]
-  to_port           = [80, 443][count.index]
+  from_port         = 443
+  to_port           = 443
   security_group_id = aws_security_group.load_balancer_security_group.id
-  description       = "Incoming access to port ${[80, 443][count.index]}"
+  description       = "Incoming HTTPS access to port 443"
 }
