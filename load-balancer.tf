@@ -21,8 +21,10 @@ resource "aws_route53_record" "www" {
 
 resource "aws_lb_listener" "webapp_listener" {
   load_balancer_arn = aws_lb.webapp_load_balancer.arn
-  protocol          = "HTTP"
-  port              = 80
+  protocol          = "HTTPS"
+  ssl_policy        = "ELBSecurityPolicy-2016-08"
+  port              = 443
+  certificate_arn   = var.ssl_certificate_arn
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.webapp_target_group.arn

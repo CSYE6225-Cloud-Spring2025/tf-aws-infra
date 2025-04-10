@@ -24,12 +24,12 @@ variable "availability_zones" {
 }
 
 variable "public_cidr_range" {
-  description = "Public cidr range"
+  description = "Public CIDR range"
   type        = list(string)
 }
 
 variable "private_cidr_range" {
-  description = "Private cidr range"
+  description = "Private CIDR range"
   type        = list(string)
 }
 
@@ -90,5 +90,10 @@ variable "ec2_template_name" {
 
 variable "autoscaling_group_name" {
   description = "Auto-scaling group name"
+  type        = string
+}
+
+variable "ssl_certificate_arn" {
+  description = "Imported SSL certificate ARM"
   type        = string
 }

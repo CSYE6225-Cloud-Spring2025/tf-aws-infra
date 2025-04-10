@@ -20,3 +20,11 @@
 1. Create a hosted zone in the subaccount for the subdomain
 2. Copy the Zone ID of the Route 53 hosted zone and add it to `route53_zone_id` in `<env>.tfvars`
 3. Use Apache Benchmark to send bulk requests `ab -n 10000 -c 100 http://<domain.tld>/healthz`
+
+## Assignment 8
+1. Create `openssl-san.cnf` with the domain name to be verified and other details
+2. Create CSR using `openssl req -new -newkey rsa:2048 -nodes -keyout demo.sarthakmallick.me.key -out demo.sarthakmallick.me.csr -config openssl-san.cnf`
+3. Use the `demo.sarthakmallick.me.csr` generated above to buy SSL Certificate
+4. Validate the certificate by adding verification CNAME entry in subdomain hosted zone
+5. Import the certificates into current folder and run `aws acm import-certificate --certificate fileb://demo_sarthakmallick_me.crt --private-key fileb://demo.sarthakmallick.me.key --certificate-chain fileb://demo_sarthakmallick_me.ca-bundle --profile demo --region us-east-1`
+6. Assign the generated ARN value to `ssl_certificate_arn` in `demo.tfvars`
